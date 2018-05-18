@@ -53,6 +53,37 @@ Player.prototype.render = function() {
 Player.prototype.update = function() {
 
 };
+
+//Receive user input - pressed keys - and move the player according to that input
+Player.prototype.handleInput = function(input) {
+
+    switch(input){
+        case 'left':
+            if(this.x-101>-20){
+                this.x=this.x-101;
+            }
+            break;
+
+        case 'up':
+            if(this.y-80>-100){
+                this.y=this.y-80;
+            }
+            break;
+
+        case 'right':
+            if(this.x+101<WIDTH){
+                this.x=this.x+101;
+            }
+            break;
+
+        case 'down':
+            if(this.y+80<HEIGHT-171){
+               this.y=this.y+80;
+            }
+            break;
+    }
+};
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
