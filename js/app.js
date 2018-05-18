@@ -30,6 +30,10 @@ Enemy.prototype.update = function(dt) {
         this.y= 73*randomY;
         this.speed = 50 + Math.floor(Math.random() * Math.floor(300));
     }
+    //Check collisions
+    if(player.x<this.x+60 && player.x+60>this.x && player.y<this.y+30 && player.y+30>this.y){
+        player.resetPlayer();
+    }    
 
 };
 
