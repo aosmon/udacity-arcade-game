@@ -51,7 +51,14 @@ Player.prototype.render = function() {
 
 // Update the player's position, required method for game
 Player.prototype.update = function() {
-
+    if(this.y<-20){
+        this.resetPlayer();
+    }
+};
+//Reset player to the original location
+Player.prototype.resetPlayer = function(){
+        this.y = HEIGHT - 227;
+        this.x = WIDTH/2 - PLAYER_WIDTH/2;
 };
 
 //Receive user input - pressed keys - and move the player according to that input
