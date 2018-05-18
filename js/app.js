@@ -22,7 +22,7 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    
+
     this.x=this.x+this.speed*dt;
     if(this.x>WIDTH){
         let randomY = Math.floor(Math.random() * Math.floor(3))+1;
@@ -44,6 +44,15 @@ var Player = function(){
     this.sprite = 'images/char-boy.png';
 }
 
+// Draw the enemy on the screen, required method for game
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+// Update the player's position, required method for game
+Player.prototype.update = function() {
+
+};
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
