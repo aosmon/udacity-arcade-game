@@ -1,4 +1,10 @@
-// Enemies our player must avoid
+// set canvas variables
+const WIDTH = 505;
+const HEIGHT = 606;
+const PLAYER_WIDTH = 101;
+const PLAYER_HEIGHT = 171;
+
+// Enemies class
 var Enemy = function() {
 
   let randomY = Math.floor(Math.random() * Math.floor(3))+1;
@@ -22,15 +28,17 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
-
+// Player class
+var Player = function(){
+    this.x = WIDTH/2 - PLAYER_WIDTH/2;
+    this.y = HEIGHT - 227;
+    this.sprite = 'images/char-boy.png';
+}
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
+var player = new Player();
 var bug1 = new Enemy();
 var bug2 = new Enemy();
 var bug3 = new Enemy();
