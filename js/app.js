@@ -1,19 +1,40 @@
+"use strict";
 // set canvas variables
 const WIDTH = 505;
 const HEIGHT = 606;
 const PLAYER_WIDTH = 101;
 const PLAYER_HEIGHT = 171;
 
+//Character class
+var Character = function(x, y, sprite){
+    this.x = x;
+    this.y = y;
+    this.sprite = sprite;
+}
+
+//Draw character on the screen
+//this uses a helper to easily load images
+Character.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
 // Enemies class
 var Enemy = function() {
 
-  let randomY = Math.floor(Math.random() * Math.floor(3))+1;
-  this.speed = 50 + Math.floor(Math.random() * Math.floor(300));
-  this.x = 0;
-  this.y = 73*randomY;
-  // The image/sprite for enemies, this uses
-  // a helper to easily load images
-  this.sprite = 'images/enemy-bug.png';
+    let randomY = Math.floor(Math.random() * Math.floor(3))+1;
+    let x = 0;
+    let y = 73*randomY;
+    let sprite = 'images/enemy-bug.png';
+
+    Character.call(this, x, y, sprite);
+    this.speed = 50 + Math.floor(Math.random() * Math.floor(300));
+};
+Enemy.prototype = Object.create(Character.prototype);
+Enemy.prototype.constructor = Enemy;
+
+// Draw the enemy on the screen, required method for game
+Enemy.prototype.render = function() {
+    Character.prototype.render.call(this);
 };
 
 // Update the enemy's position, required method for game
@@ -33,24 +54,23 @@ Enemy.prototype.update = function(dt) {
     //Check collisions
     if(player.x<this.x+60 && player.x+60>this.x && player.y<this.y+30 && player.y+30>this.y){
         player.resetPlayer();
-    }    
+    }
 
 };
 
-// Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
 // Player class
 var Player = function(){
-    this.x = WIDTH/2 - PLAYER_WIDTH/2;
-    this.y = HEIGHT - 227;
-    this.sprite = 'images/char-boy.png';
+    let x = WIDTH/2 - PLAYER_WIDTH/2;
+    let y = HEIGHT - 227;
+    let sprite = 'images/char-boy.png';
+    Character.call(this, x, y, sprite);
 }
+Player.prototype = Object.call(Character.prototype);
+Player.prototype.constructor = Player;
 
-// Draw the enemy on the screen, required method for game
+// Draw the player on the screen, required method for game
 Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    Character.prototype.render.call(this);
 };
 
 // Update the player's position, required method for game
