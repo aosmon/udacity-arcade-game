@@ -53,6 +53,7 @@ Enemy.prototype.update = function(dt) {
     }
     //Check collisions
     if(player.x<this.x+60 && player.x+60>this.x && player.y<this.y+30 && player.y+30>this.y){
+        player.score=0;
         player.resetPlayer();
     }
 
@@ -63,6 +64,7 @@ var Player = function(){
     let x = WIDTH/2 - PLAYER_WIDTH/2;
     let y = HEIGHT - 227;
     let sprite = 'images/char-boy.png';
+    this.score = 0;
     Character.call(this, x, y, sprite);
 }
 Player.prototype = Object.call(Character.prototype);
@@ -76,6 +78,7 @@ Player.prototype.render = function() {
 // Update the player's position, required method for game
 Player.prototype.update = function() {
     if(this.y<-20){
+        alert("Nice job! Your score is " + ++this.score);
         this.resetPlayer();
     }
 };
