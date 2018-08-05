@@ -1,7 +1,7 @@
 Arcade Game
 ===============================
 
-# Project Description
+## Project Description
 
 The Arcade Game Project from Udacity Front-End Web Developer nanodegree program is an implementation of the classic arcade game Frogger. Goal of the project is to practice JavaScript’s object oriented programming features by writing classes capable of creating countless instances of similarly functioning objects. Using provided visual assets and a game loop engine, students are reqiered to add a number of entities and methods to the game including the player characters and enemies. Starter code and files can be cloned or downloaded from this repository https://github.com/udacity/frontend-nanodegree-arcade-game.
 
